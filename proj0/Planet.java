@@ -54,4 +54,13 @@ public class Planet {
 		}
 		return FS;
 	}
+	public void update(double dt, double fX, double fY) {
+		xxVel += fX * dt / mass;
+		yyVel += fY * dt / mass;
+		xxPos += xxVel * dt;
+		yyPos += yyVel * dt;
+	}
+	public void draw() {
+		StdDraw.picture(xxPos, yyPos, "images/" + imgFileName);
+	}
 }
