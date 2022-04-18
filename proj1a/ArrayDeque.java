@@ -2,6 +2,7 @@ public class ArrayDeque<T> {
     private T[] arr = (T[]) new Object[8];
     private int prev = 0;
     private int tail = 0;
+    private double Ratio = 0.25;
     public ArrayDeque() {
         arr = (T[]) new Object[8];
         prev = 0;
@@ -46,7 +47,9 @@ public class ArrayDeque<T> {
             return null;
         T tmp = arr[(prev + arr.length) % arr.length];
         //arr[(prev-- + arr.length) % arr.length] = null;
-        prev--;
+        prev++;
+        if((double)size() / arr.length < Ratio)
+            resize(arr.length / 2);
         return tmp;
     }
     public T removeLast() {
@@ -55,6 +58,8 @@ public class ArrayDeque<T> {
         T tmp = arr[(tail + arr.length) % arr.length];
         //arr[(tail-- + arr.length) % arr.length] = null;
         tail--;
+        if((double)size() / arr.length < Ratio)
+            resize(arr.length / 2);
         return tmp;
     }
     public T get(int index) {

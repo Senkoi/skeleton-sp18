@@ -85,4 +85,14 @@ public class LinkedListDeque<T> {
         }
         return (T)tmp.value;
     }
+
+    public T getNodeRecursive(DNode node, int index) {
+        if(index == 0)
+            return (T)node.value;
+        else
+            return (T)getNodeRecursive(node.next, index - 1);
+    }
+    public T getRecursive(int index) {
+        return (T)getNodeRecursive(sentinel.next, index);
+    }
 }
