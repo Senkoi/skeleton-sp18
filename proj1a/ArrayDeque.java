@@ -12,11 +12,12 @@ public class ArrayDeque<T> {
         prev = other.prev;
         tail = other.tail;
         arr = (T[]) new Object[other.size()];
-        System.arraycopy(arr, 0, other, 0, arr.length);
+        System.arraycopy(other, 0, arr, 0, arr.length);
     }
     private void resize(int capacity) {
         T[] tmp = (T[]) new Object[capacity];
-        System.arraycopy(tmp, 0, arr, 0, arr.length);
+        System.arraycopy(arr, 0, tmp, 0, tail);
+        System.arraycopy(arr, prev + arr.length, tmp, prev + capacity, Math.abs(prev));
         arr = tmp;
     }
     public void addFirst(T item) {
@@ -63,6 +64,6 @@ public class ArrayDeque<T> {
         return tmp;
     }
     public T get(int index) {
-        return arr[tail + index];
+        return arr[(prev + index + arr.length) % arr.length];
     }
 }
