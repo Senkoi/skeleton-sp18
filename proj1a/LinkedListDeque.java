@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
 
-    class DNode<T> {
+    private class DNode<T> {
         T value;
         DNode prev;
         DNode next;
@@ -33,12 +33,14 @@ public class LinkedListDeque<T> {
     public void addFirst(T item) {
         DNode tmp = new DNode<T>(sentinel, sentinel.next);
         tmp.value = item;
+        tmp.next.prev = tmp;
         sentinel.next = tmp;
         size += 1;
     }
     public void addLast(T item) {
         sentinel.prev = new DNode<T>(sentinel.prev, sentinel);
         sentinel.prev.value = item;
+        sentinel.prev.prev.next = sentinel.prev;
         size += 1;
     }
     public boolean isEmpty() {
@@ -59,6 +61,7 @@ public class LinkedListDeque<T> {
         if(tmp == sentinel)
             return null;
         sentinel.next = sentinel.next.next;
+        sentinel.next.prev = sentinel;
         size--;
         return tmp.value;
     }
@@ -67,6 +70,7 @@ public class LinkedListDeque<T> {
         if(tmp == sentinel)
             return null;
         sentinel.prev = sentinel.prev.prev;
+        sentinel.prev.next = sentinel;
         size--;
         return tmp.value;
     }
@@ -77,7 +81,7 @@ public class LinkedListDeque<T> {
      * @return Expect node.
      */
     public T get (int index) {
-        DNode tmp = sentinel;
+        DNode tmp = sentinel.next;
         if(index > size)
             return null;
         while(index-- > 0) {
@@ -86,7 +90,7 @@ public class LinkedListDeque<T> {
         return (T)tmp.value;
     }
 
-    public T getNodeRecursive(DNode node, int index) {
+    private T getNodeRecursive(DNode node, int index) {
         if(index == 0)
             return (T)node.value;
         else
