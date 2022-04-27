@@ -48,7 +48,7 @@ public class ArrayDeque<T> {
         T tmp = arr[(prev + arr.length) % arr.length];
         //arr[(prev-- + arr.length) % arr.length] = null;
         prev++;
-        if((double)size() / arr.length < Ratio)
+        if((double)size() / arr.length < Ratio && size() > 16)
             resize(arr.length / 2);
         return tmp;
     }
@@ -58,7 +58,7 @@ public class ArrayDeque<T> {
         T tmp = arr[(tail + arr.length) % arr.length];
         //arr[(tail-- + arr.length) % arr.length] = null;
         tail--;
-        if((double)size() / arr.length < Ratio)
+        if((double)size() / arr.length < Ratio && size() > 16)
             resize(arr.length / 2);
         return tmp;
     }
