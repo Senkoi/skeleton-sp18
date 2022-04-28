@@ -24,12 +24,12 @@ public class LinkedListDeque<T> {
         sentinel.next = sentinel;
         size = 0;
     }
-    public LinkedListDeque(LinkedListDeque other) {
-        this();
-        for(int i = 0; i < other.size(); i++) {
-            addLast((T)other.get(i));
-        }
-    }
+    //public LinkedListDeque(LinkedListDeque other) {
+    //    this();
+    //    for(int i = 0; i < other.size(); i++) {
+    //        addLast((T)other.get(i));
+    //    }
+    //}
     public void addFirst(T item) {
         DNode tmp = new DNode<T>(sentinel, sentinel.next);
         tmp.value = item;

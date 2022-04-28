@@ -8,12 +8,12 @@ public class ArrayDeque<T> {
         prev = 0;
         size = 0;
     }
-    public ArrayDeque(ArrayDeque other) {
-        prev = other.prev;
-        size = other.size;
-        arr = (T[]) new Object[other.size()];
-        System.arraycopy(other, 0, arr, 0, arr.length);
-    }
+    //public ArrayDeque(ArrayDeque other) {
+    //    prev = other.prev;
+    //    size = other.size;
+    //    arr = (T[]) new Object[other.size()];
+    //    System.arraycopy(other, 0, arr, 0, arr.length);
+    //}
     private int getFirstIndex() {
         return (prev % arr.length + arr.length) % arr.length;
     }
@@ -45,8 +45,8 @@ public class ArrayDeque<T> {
         if(arr.length - 1 == size()) {
             resize(arr.length * 2);
         }
-        arr[getLastIndex()] = item;
         size++;
+        arr[getLastIndex()] = item;
     }
     public boolean isEmpty() {
         return size == 0;
