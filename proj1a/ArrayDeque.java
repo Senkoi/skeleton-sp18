@@ -24,8 +24,8 @@ public class ArrayDeque<T> {
     private void resize(int capacity) {
         T[] tmp = (T[]) new Object[capacity];
         if(size > arr.length - 1 - getFirstIndex()) {
-            System.arraycopy(arr, getFirstIndex(), tmp, 0, Math.abs(prev % arr.length));
-            System.arraycopy(arr, 0, tmp, Math.abs(prev % arr.length), size - Math.abs(prev % arr.length));
+            System.arraycopy(arr, getFirstIndex(), tmp, 0, arr.length - getFirstIndex());
+            System.arraycopy(arr, 0, tmp, arr.length - getFirstIndex(), size - arr.length + getFirstIndex());
         }
         else{
             System.arraycopy(arr, getFirstIndex(), tmp,0, size);
