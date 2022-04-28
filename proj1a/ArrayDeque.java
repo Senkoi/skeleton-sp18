@@ -67,7 +67,7 @@ public class ArrayDeque<T> {
         arr[getFirstIndex()] = null;
         //arr[(prev-- + arr.length) % arr.length] = null;
         prev++;
-        if((double)size() / arr.length < Ratio && size() > 16)
+        if((double)size() / arr.length < Ratio && arr.length > 16)
             resize(arr.length / 2);
         size--;
         return tmp;
@@ -79,7 +79,7 @@ public class ArrayDeque<T> {
         arr[getLastIndex()] = null;
         //arr[(tail-- + arr.length) % arr.length] = null;
         size--;
-        if((double)size() / arr.length < Ratio && size() > 16)
+        if((double)size() / arr.length < Ratio && arr.length > 16)
             resize(arr.length / 2);
         return tmp;
     }
